@@ -1,49 +1,46 @@
-# UE5 Fantastic Five 🎮
+# UE5 Fantastic Five & Cannaville Architecture 🎮
 
-The **Fantastic Five** is a highly specialized, enterprise-grade Agent-Driven Development (ADD) architecture tailored for **Unreal Engine 5 C++** development. 
+This repository contains the configuration and skills for an advanced, Agent-Driven Development (ADD) architecture tailored for Unreal Engine 5 C++ projects, specifically geared towards the **Cannaville** project.
 
-This architecture moves beyond treating LLMs as mere "code writers." Instead, it implements a **Manager-Subordinate paradigm**, where agents act as Lead Developers and QA Managers who dynamically spawn their own subagents, enforce a strict *Design-First* workflow, and utilize a highly disciplined local JSON-based memory system known as the Memory Bank Protocol.
+## The Legacy Orchestration Setup: The Fantastic Five
+At the core of this system is the **Fantastic Five**, a highly disciplined, enterprise-grade engineering pipeline. It moves beyond simple LLM code generation by implementing a **Manager-Subordinate paradigm** and utilizing a local JSON-based memory system known as the **Memory Bank Protocol**. 
 
-## 🧠 The Architecture (The 5 Agents)
+The legacy 5-agent engineering team consists of:
+1. **Orchestrator**: The workflow router and project manager for engineering.
+2. **Archivist**: The local RAG/Memory system maintainer.
+3. **Lead Coder**: The C++ Architect that spawns subagents for implementation.
+4. **Senior Reviewer**: The QA Manager that enforces SOLID principles, UE5 standards, and performance.
+5. **Git Agent**: The version control expert that safely commits compiled code.
 
-### 1. 🎼 Orchestrator (The Mastermind)
-- **Role:** Project Manager & Workflow Router.
-- **Workflow:** When a task is requested, the Orchestrator **never** writes code immediately. It first initiates a **Design Phase** with the user, querying the Archivist for existing project constraints. Once the user approves the design roadmap, it delegates the execution to the Lead Developer. 
-- **Memory Protocol:** It operates strictly under the "Read First" rule (pulling context before acting) and the mandatory "Write Last" rule (ordering the Archivist to update the state once a task is completed).
+## The 3-Team Dynamic
+For the Cannaville project, the architecture has evolved beyond pure C++ engineering into a comprehensive **3-Team Dynamic**, covering the entire game development lifecycle:
 
-### 2. 📚 Archivist (The Memory Bank / Local RAG)
-- **Role:** Local Knowledge & Dependency Manager.
-- **Workflow:** Maintains the **4 Core JSON Pillars** in a hidden `.antigravity/memory/` directory within your project. It acts as a highly efficient, zero-token-bloat RAG system.
-  - `SystemPatterns.json`: Core architectural rules and restricted libraries.
-  - `ProjectMap.json`: Module dependencies and folder context.
-  - `ActiveState.json`: The team's current focus and open bugs.
-  - `Progress.json`: Completed features and long-term roadmap.
+1. **Vision & Production Team**: Responsible for the "what" and the "why". They define the game's soul, manage the scope for Steam Next Fest, and ensure the player psychology is perfectly tuned.
+2. **Engineering Team (Fantastic Five)**: Responsible for the "how" (in code). They execute the C++ logic, maintain the Memory Bank, and ensure architectural integrity.
+3. **Engine & Integration Team**: Responsible for the "where". They bridge the gap between the raw C++ code and the visual Unreal Engine 5 Editor (Blueprints, UMG, Animations).
 
-### 3. 👨‍💻 Lead Coder (The Lead Developer)
-- **Role:** C++ Architect & Team Lead.
-- **Workflow:** Receives the approved design from the Orchestrator. It does not blindly write a massive `.cpp` file in one breath. Equipped with `subagent_tools`, it can spawn its own temporary subagents (e.g., `HeaderArchitect`, `CppImplementer`, `RefactorSpecialist`) to handle complex UE5 macros, `TObjectPtr` memory safety, and Event-Driven decoupling.
+## Agent Roles & Responsibilities
 
-### 4. 🕵️‍♂️ Senior Reviewer (The QA Manager)
-- **Role:** The Gatekeeper of Quality & Performance.
-- **Workflow:** The most critical agent in the pipeline. Upon receiving code from the Lead Developer, it dynamically spawns **3 specialized auditors**:
-  1. **Performance & Security Auditor:** Inspects Big O complexity, Tick() abuse, GC optimization, and cache coherency.
-  2. **Architecture & SOLID Validator:** Ensures adherence to GoF patterns, strict SOLID principles, and backward compatibility.
-  3. **UE5 Standards Enforcer:** Verifies Epic Games' C++ standards, macro flags, Subsystem usage, and replication rules.
-  
-  If any auditor raises a red flag, the QA Manager aggregates a "Redjection Report" and kicks the code back to the Lead Developer. Once flawlessly approved, it runs the native Unreal Build Tool (UBT) to guarantee compilation.
+### 🎨 Lead Game Designer (`cannaville_gd`)
+- **Role**: Creative Director & Game Feel Expert.
+- **Focus**: Player psychology, the "cozy to panic" loop, Game Feel ("juice"), and Tactile UI.
+- **Workflow**: Proposes bold ideas without fear of scope creep (leaving that to the PM). Provides detailed, non-technical "director" descriptions of how things should look and feel. 
+- **Key Trait**: A strict "Anti-Yes-Man". Will aggressively push back on user ideas if they harm the game's psychological impact or lack "juice".
 
-### 5. 🐙 Git Agent (The Version Control Expert)
-- **Role:** Repository Maintainer.
-- **Workflow:** Steps in only after the QA Manager has approved and successfully compiled the code. It analyzes the diffs semantically and executes clean, atomic, conventional commits (feat, fix, refactor) directly on your local machine.
+### 📊 Project Manager (`cannaville_pm`)
+- **Role**: Executive Producer & Steam Deploy Master.
+- **Focus**: Steam Next Fest deployment, scope management, and indie marketing strategies.
+- **Workflow**: Analyzes Obsidian GDDs, prioritizes features for the demo, and designs capsule/trailer strategies. 
+- **Key Trait**: The ultimate safeguard against "feature creep". Keeps the project on track and the developer focused on the roadmap.
 
-## 🚀 Key Features
+### 🎼 Orchestrator (`orchestrator_cannaville`)
+- **Role**: Engineering Project Manager.
+- **Focus**: Big picture task routing and Memory Bank Protocol execution.
+- **Workflow**: Enforces a strict "Design-First" rule. Reads context via the Archivist before allowing any coding. Delegates to the Lead Coder and manages the QA loop (preventing infinite "Redjection" loops).
+- **Key Trait**: Enforces the "Write Last" rule, ensuring all completed tasks are logged in the project's state memory before handing off UI/Blueprint integration to the Tech Director.
 
-*   **Memory Bank Protocol:** Agents strictly follow "Read First" and "Write Last" operations. The system NEVER forgets the state of the project or leaves a task unrecorded in the `ActiveState.json` or `Progress.json`.
-*   **Zero Assumptions:** A system-wide guardrail built into every agent. If an agent does not understand a diff, a class, or a constraint, guessing is strictly forbidden. They will actively query the Archivist or halt and ask the user.
-*   **Design-First Philosophy:** Zero code is written until a comprehensive architectural consensus is reached between the User, Orchestrator, and Archivist.
-*   **Inception (Subagent Nesting):** Lead agents spawn their own specialized sub-agents for granular tasks, eliminating the classic "LLM Context Blindspot" on second-pass reviews.
-*   **Token-Efficient RAG:** Completely replaces expensive global context windows with targeted `grep` operations over local JSON structured memory.
-*   **Auto-Routing:** When installed globally, any coding request inside your UE5 workspace automatically triggers the Orchestrator silently in the background.
-
----
-*Elevate your Unreal Engine development with a dedicated AI studio.*
+### 🛠️ UE5 Tech Director (`ue5_master`)
+- **Role**: Senior Unreal Engine 5 Technical Director.
+- **Focus**: Editor features, asset integration, and user mentorship.
+- **Workflow**: Takes over after the Engineering team commits C++ code. Guides the user step-by-step (using precise English UE5 UI terminology) on how to bind C++ classes to UMG Widgets, AnimBPs, and other engine assets.
+- **Key Trait**: Strictly banned from writing C++ code or suggesting gameplay logic in Blueprints. Acts purely as an editor guide and integration mentor.
