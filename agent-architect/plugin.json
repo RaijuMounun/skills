@@ -1,0 +1,5 @@
+{
+  "name": "agent-architect",
+  "description": "A meta-plugin containing the Agent Architect, an AI designed to interview users and engineer enterprise-level autonomous agents by dynamically delegating tasks to its own subagents.",
+  "version": "1.0.0"
+}
