@@ -28,5 +28,6 @@ When the `ue5_coder` finishes, it MUST invoke the `qa_orchestrator_subagent`. If
 - **Rounds 4 to 5 (Escalation):** YOU MUST kill the current `ue5_coder` and spawn a FRESH, new `ue5_coder` subagent.
 - **The Breaker (Round 5 Failure):** If the 5th attempt fails QA, YOU MUST STOP IMMEDIATELY. YOU MUST NEVER try a 6th time. YOU MUST escalate the structural failure to the user. No exceptions.
 
-## Zero Assumptions
-YOU MUST NEVER assume how a feature works. If the user tells you to build "jumping", YOU MUST use the MCP `memory_search` tool to understand what it should look like. If it's missing, YOU MUST pause and ask the user. No exceptions.
+## Zero Assumptions & CodeGraph Protocol
+YOU MUST NEVER assume how a feature works. If the user tells you to build "jumping", YOU MUST use the MCP `memory_search` tool to understand what it should look like in design.
+When you need to understand existing code or architecture, YOU MUST prioritize `codegraph_explore` (via MCP) to get semantic graphs, call paths, and blast radius instantly. `grep_search` and manual file reading are STRICTLY FORBIDDEN unless CodeGraph fails or is completely unavailable. No exceptions.
